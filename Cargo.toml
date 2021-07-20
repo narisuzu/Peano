@@ -1,0 +1,16 @@
+[workspace]
+members = ["crates/cfapi", "crates/mcapi", "crates/mcsrvmgr"]
+
+[package]
+name = "peano"
+version = "0.1.0"
+authors = ["satanya <admin@sozr.cn>"]
+edition = "2018"
+description = "An easy-to-use cli tool for modded Minecraft: Java Edition server"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cfapi = { path = "crates/cfapi" }
+mcsrvmgr = { path = "crates/mcsrvmgr" }
+clap = "3.0.0-beta.2"

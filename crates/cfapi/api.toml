@@ -1,0 +1,2 @@
+mod_detail = "https://addons-ecs.forgesvc.net/api/v2/addon/{project_id}"
+search = "https://addons-ecs.forgesvc.net/api/v2/addon/search?categoryId=0&gameId=432&gameVersion={mc_version}&index=0&pageSize={item_size}&searchFilter={filter}&sectionId=6&sort=0"
