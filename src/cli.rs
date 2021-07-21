@@ -1,4 +1,5 @@
 use clap::{AppSettings, ArgEnum, ArgGroup, Clap};
+use std::ops::Not;
 
 #[derive(Clap, Debug)]
 #[clap(author, about, version)]
@@ -25,7 +26,9 @@ enum SubCommand {
     #[clap(about = "add something", group = ArgGroup::new("adding_search").required(true))]
     Add(Add),
 
-    #[clap(about = "Check the version wether could be updated")]
+    #[clap(
+        about = "Check wether the server has been configured properly"
+    )]
     Check(Check),
 
     #[clap(
@@ -54,6 +57,7 @@ struct Add {
     #[clap(
         arg_enum,
         short,
+        name = "SOURCE",
         about = "Set the source which you would like to download mods from",
         default_value = "cf"
     )]
@@ -67,7 +71,7 @@ enum ModSource {
 
 #[derive(Debug, Clap)]
 struct Run {
-    #[clap(long = "no-check", parse(from_flag = std::ops::Not::not))]
+    #[clap(long = "no-check", parse(from_flag = Not::not))]
     check: bool,
 }
 
@@ -94,21 +98,6 @@ struct Update {
 
 #[derive(Debug, Clap)]
 struct Check {
-    #[clap(short, long, about = "Check version of current server core")]
-    core: bool,
-
-    #[clap(
-        short,
-        long,
-        about = "Check the version of specific mod",
-        value_name = "MOD_NAME",
-        conflicts_with = "all_mod"
-    )]
-    _mod: Vec<String>,
-
-    #[clap(long, about = "Check versions of all mods installed in current server")]
-    all_mod: bool,
-
-    #[clap(short, long, about = "Check lates version of peano")]
-    peano: bool,
+    #[clap(long = "no-mod", about = "Skip the check for ALL mods", parse(from_flag = Not::not))]
+    _mod: bool,
 }

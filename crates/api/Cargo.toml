@@ -1,5 +1,5 @@
 [package]
-name = "mcapi"
+name = "api"
 version = "0.1.0"
 authors = ["satanya <admin@sozr.cn>"]
 edition = "2018"
